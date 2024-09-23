@@ -11,6 +11,7 @@ connectDb();
 app.use(express.json(), cors())
 
 app.use("/api/auth", require("./routes/loginRoutes"));
+app.use("/api/products", require("./routes/productRoutes"));
 
 app.listen(port, () => {
     console.log("Server running on", port)
