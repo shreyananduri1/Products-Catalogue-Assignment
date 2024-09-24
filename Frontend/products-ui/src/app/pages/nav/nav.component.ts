@@ -11,7 +11,8 @@ export class NavComponent {
   constructor(private router:Router, private userService: UsersService){}
 
   isHomeRoute(): boolean {
-    return this.router.url == '/home';
+    const currentRoute = this.router.url;
+    return currentRoute == '/home';
   }
 
 

@@ -1,11 +1,15 @@
+<div class="container">
 <mat-toolbar color="primary">
-  <span class="home-click" routerLink="/home">Home</span>
+  <span class="home-click" routerLink="/home">
+    <img src="shopping-cart.png" class="shop-icon">
+    ProductHub</span>
   <span class="example-spacer"></span>
   <ng-container *ngIf="isHomeRoute(); else showAuthButtons">
-    <button mat-button>Logout</button>
+    <button mat-button routerLink="/login">Logout</button>
   </ng-container>
   <ng-template #showAuthButtons>
     <button mat-button routerLink="/login">Login</button>
     <button mat-button routerLink="/register">Sign up</button>
   </ng-template>
 </mat-toolbar>
+</div>

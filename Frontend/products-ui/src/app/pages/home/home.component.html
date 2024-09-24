@@ -6,16 +6,30 @@
     Add Product
   </button>
 </div>
-<div class="filter">
+<div class="search">
+
 <mat-form-field>
-  <mat-label>Filter</mat-label>
+  <mat-label>Search by product</mat-label>
   <input
     matInput
     (keyup)="applyFilter($event)"
     placeholder="enter data"
+    id='input'
+    [(ngModel)] = "inputValue"
     #input
   />
 </mat-form-field>
+
+
+
+  <mat-form-field>
+    <mat-label>Search by category</mat-label>
+    <mat-select [(value)]="selectedCategory" (selectionChange)="searchCategory()">
+      <mat-option *ngFor="let category of categories" [value]="category">{{category}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+<button mat-icon-button class="close-button" (click)="clearFilter()"><mat-icon>close</mat-icon></button>
 </div>
 
 <div class="product-container">
@@ -31,13 +45,14 @@
     />
     <mat-card-header>
       <mat-card-title
-        >{{ product.company }} {{ product.productName }}</mat-card-title
+        >{{ product.productName }}</mat-card-title
       >
       <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      <div class="stock">In Stock: {{ product.stock }}</div>
-      <div class="vendor">Vendor: {{ product.seller }}</div>
+      <div class="company"><span>Company</span>: {{ product.company }} </div>
+      <div class="stock"><span>In Stock</span>: {{ product.stock }}</div>
+      <div class="vendor"><span>Vendor</span>: {{ product.seller }}</div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="openDetailsPage(product._id)">

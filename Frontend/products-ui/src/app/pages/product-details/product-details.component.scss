@@ -1,19 +1,43 @@
+h5{
+  margin: 20px;
+  font-size: 25px; 
+}
+
+.desc{
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  margin-top: 37px;
+}
+
+
+
 .container {
   display: flex;
   justify-content: center;
-  margin: 5%;
+  margin: 3%;
   .product-card {
     width: 60%;
     height: auto;
     .card-content {
-      margin-top: 20px;
+      margin-top: 30px;
       display: flex;
       justify-content: space-around;
       .image {
-        border: 5px;
-        border-radius: 5px solid;
+        img{
+          border: 2px solid #e0e0e0; 
+          border-radius: 8px; 
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
       }
     }
+  }
+}
+
+.header{
+  background-color:  #0a84e1dd;
+  border-radius: 5px 5px 0 0;
+  mat-card-header{
+  margin-bottom: 7px;
   }
 }
 

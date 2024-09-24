@@ -1,12 +1,14 @@
-<!-- <h2 mat-dialog-title>Product Details</h2> -->
+<h5 mat-dialog-title>Product Details</h5>
 <div class="container">
   <mat-card class="product-card">
+    <div class="header">
     <mat-card-header>
       <mat-card-title-group>
         <mat-card-title>{{product.productName}}</mat-card-title>
         <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
       </mat-card-title-group>
     </mat-card-header>
+  </div>
     <mat-card-content class="card-content">
       <div class="image">
         <img
@@ -15,14 +17,14 @@
         />
       </div>
       <div class="desc">
-      <div>Company: {{ product.company }} </div><div>Seller: {{ product.seller }}</div>
+      <div><b>Company</b>: {{ product.company }} </div><div><b>Seller</b>: {{ product.seller }}</div>
       <div>
-        Description:
-        <p>{{ product.description }}</p>
+        <b>Description</b>:
+        {{ product.description }}
       </div>
-      <div>Color: {{ product.color }} </div> 
-      <div>Stock: {{ product.stock }}</div>
-      <div>Created Date:{{ product.createdDate }}</div>
+      <div><b>Color</b>: {{ product.color }} </div> 
+      <div><b>Stock</b>: {{ product.stock }}</div>
+      <div><b>Created Date</b>:{{ product.createdDate }}</div>
     </div>
     </mat-card-content>
     <div class="buttons">

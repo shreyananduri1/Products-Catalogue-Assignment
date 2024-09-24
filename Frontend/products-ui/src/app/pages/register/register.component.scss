@@ -13,7 +13,8 @@ mat-card{
 mat-card-content{
     font-weight: 600;
     font-size: 22px;
-    margin-left: 31%;
+    display: flex;
+    justify-content: center;
 }
 
 .row {

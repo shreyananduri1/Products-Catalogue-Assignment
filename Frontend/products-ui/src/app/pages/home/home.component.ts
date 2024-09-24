@@ -10,27 +10,33 @@ import { filter } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-
   products: IProduct[] = [];
   filteredProducts: any;
+  categories: string[] = ['Electronics', 'Beauty', 'Home', 'Kitchen'];
+  selectedCategory: string = '';
+  inputValue: string= '';
 
-  constructor (private productService: ProductsService, private dialog: MatDialog, private router: Router){}
+  constructor(
+    private productService: ProductsService,
+    private dialog: MatDialog,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.fetchProducts(); 
+    this.fetchProducts();
   }
 
   fetchProducts() {
     this.productService.getAllProducts().subscribe(
-      response => {
+      (response) => {
         this.products = response.data;
         this.filteredProducts = this.products;
       },
-      error => {
-        console.error("Error fetching products:", error);
+      (error) => {
+        console.error('Error fetching products:', error);
       }
     );
   }
@@ -38,22 +44,37 @@ export class HomeComponent {
   openAddProductForm() {
     const dialogRef = this.dialog.open(ProductAddEditComponent);
     dialogRef.afterClosed().subscribe(() => {
-      this.fetchProducts()
-    })
+      this.fetchProducts();
+    });
   }
 
   openDetailsPage(id: any) {
     this.router.navigate(['/product-details', id]);
   }
 
-  applyFilter(event: Event){
-    const filterValue = (event.target as HTMLInputElement).value;
-    if(filterValue){
-    this.filteredProducts = this.products.filter ((product: IProduct) => 
-      product.productName.toLowerCase().includes(filterValue.toLowerCase()))
-  }
-  else{
-    this.filteredProducts = this.products;
-  }
+  applyFilter(event: Event) {
+    this.inputValue = (event.target as HTMLInputElement).value;
+    if (this.inputValue) {
+      this.filteredProducts = this.products.filter((product: IProduct) =>
+        product.productName.toLowerCase().includes(this.inputValue.toLowerCase())
+      );
+    } else {
+      this.filteredProducts = this.products;
     }
+  }
+
+  searchCategory() {
+    if (this.selectedCategory != '') {
+      this.filteredProducts = this.products.filter(
+        (product: IProduct) => product.category == this.selectedCategory
+      );
+    } else {
+      this.filteredProducts = this.products;
+    }
+  }
+
+  clearFilter() {
+    this.inputValue = '';
+    this.selectedCategory = '';
+  }
 }

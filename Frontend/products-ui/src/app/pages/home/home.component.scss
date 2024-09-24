@@ -2,15 +2,27 @@
   margin: 20px;
   display: flex;
   justify-content: space-between;
-}
-
-.filter{
-  display:flex;
-  justify-content: center;
-  mat-form-field{
-  width: 100%;
+  h5{
+    font-size: 25px;
   }
 }
+
+span{
+  font-weight: 550;
+}
+
+.search{
+  display:flex;
+  justify-content: space-around;
+  mat-form-field{
+    width: 600px;
+  }
+  .close-button{
+    margin-top: 7px;
+  }
+}
+
+
 
 .add-button{
     margin:15px;
@@ -27,9 +39,16 @@
 .product-card {
   max-width: 250px;
   max-height: 400px;
+  margin: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    background-color: rgb(191, 215, 234);
+  }
 }
 
 mat-card-title {
@@ -45,6 +64,7 @@ mat-card-content {
 }
 
 img{
+  margin-top: 7px;
     width: 220px; 
   height: 150px; 
   object-fit:contain;
