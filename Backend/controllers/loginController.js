@@ -9,7 +9,8 @@ const registerUser = asyncHandler(async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt);
   const record = await User.findOne({ email: email });
   if (record) {
-    res.status(400).send({ message: "Email already in use" });
+    res.status(400);
+    throw new Error("Email already in use");
     return;
   }
   const newUser = await User.create({
@@ -19,33 +20,35 @@ const registerUser = asyncHandler(async (req, res) => {
   });
   const savedUser = await newUser.save();
   const { _id } = await savedUser.toJSON();
-  const token = jwt.sign({ _id: _id }, "secret");
+  const token = jwt.sign({ _id: _id }, process.env.SECRET_KEY);
   res.cookie("jwt", token, {
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000,
   });
-  res.json({ message: "User registered", data: savedUser, jwt: token });
+  res.json({ message: "User registered" });
 });
 
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if(!user){
-    res.status(404).send({message: "User not found"});
+    res.status(404);
+    throw new Error("User not found");
     return;
   }
   bcrypt.compare(password, user.password, function (err, result) {
     if (err) throw err;
     if (result === true) {
-      const token = jwt.sign({ _id: user._id }, "secret");
+      const token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY);
       res.cookie("jwt", token, {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000,
       });
-      return res.json({ message: "User logged in", data: user });
+      return res.json({ message: "User logged in" });
       
     } else {
-      res.json({ message: "user not authenticated" });
+      res.status(403);
+      throw new Error("Invalid Credentials");
     }
   });
 });
