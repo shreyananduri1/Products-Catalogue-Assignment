@@ -37,12 +37,13 @@ const loginUser = asyncHandler(async (req, res) => {
   bcrypt.compare(password, user.password, function (err, result) {
     if (err) throw err;
     if (result === true) {
-      return res.json({ message: "User logged in", data: user });
       const token = jwt.sign({ _id: user._id }, "secret");
       res.cookie("jwt", token, {
         httpOnly: true,
         maxAge: 24 * 60 * 60 * 1000,
       });
+      return res.json({ message: "User logged in", data: user });
+      
     } else {
       res.json({ message: "user not authenticated" });
     }
