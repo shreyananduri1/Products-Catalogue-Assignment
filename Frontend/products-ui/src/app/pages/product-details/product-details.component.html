@@ -1,0 +1,38 @@
+<!-- <h2 mat-dialog-title>Product Details</h2> -->
+<div class="container">
+  <mat-card class="product-card">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{product.productName}}</mat-card-title>
+        <mat-card-subtitle>{{ product.category }}</mat-card-subtitle>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content class="card-content">
+      <div class="image">
+        <img
+          mat-card-xl-image
+          src={{product.thumbnailURL}}
+        />
+      </div>
+      <div class="desc">
+      <div>Company: {{ product.company }} </div><div>Seller: {{ product.seller }}</div>
+      <div>
+        Description:
+        <p>{{ product.description }}</p>
+      </div>
+      <div>Color: {{ product.color }} </div> 
+      <div>Stock: {{ product.stock }}</div>
+      <div>Created Date:{{ product.createdDate }}</div>
+    </div>
+    </mat-card-content>
+    <div class="buttons">
+      <button mat-fab (click)="deleteProduct(product)">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-fab (click)="openEditForm(product)">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+  </mat-card>
+
+</div>

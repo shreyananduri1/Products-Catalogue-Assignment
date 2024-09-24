@@ -1,0 +1,118 @@
+<div mat-dialog-title>
+  <h1>Employee Details Form</h1>
+  <div>
+    <form [formGroup]="productForm" (ngSubmit)="onFormSubmit()">
+      <div mat-dialog-content>
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label> Product Code </mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="product code"
+              formControlName="productCode"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Product Name</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="product name"
+              formControlName="productName"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Color</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="product color"
+              formControlName="color"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Stock</mat-label>
+            <input
+              matInput
+              type="number"
+              placeholder="in stock"
+              formControlName="stock"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row-fill">
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="product description"
+              formControlName="description"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category">
+              <mat-option *ngFor="let val of categories" [value]="val">{{val}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Seller</mat-label>
+            <input
+              matInput
+              type="text"
+              placeholder="seller"
+              formControlName="seller"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <mat-form-field appearance="outline">
+            <mat-label>Company</mat-label>
+            <input
+              matInput
+              type="string"
+              placeholder="company"
+              formControlName="company"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Created Date</mat-label>
+            <input
+              matInput
+              type="date"
+              placeholder="created date"
+              formControlName="createdDate"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row-fill">
+          <mat-form-field appearance="outline">
+            <mat-label>Image URL</mat-label>
+            <input
+              matInput
+              type="string"
+              placeholder="image URL"
+              formControlName="thumbnailURL"
+            />
+          </mat-form-field>
+        </div>
+        <div mat-dialog-actions>
+          <button mat-raised-button (click)="onCancel()">Cancel</button>
+          <button
+            mat-raised-button
+            color="primary"
+            data-ng-disabled=`productForm.$invalid`
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

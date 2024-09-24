@@ -1,0 +1,65 @@
+<div class="card-container">
+    <mat-card appearance="outlined">
+      <mat-card-content>Sign up</mat-card-content>
+  
+      <div class="form-container">
+        <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="username"
+                formControlName="username"
+              />
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Email ID</mat-label>
+              <input
+                matInput
+                type="text"
+                placeholder="email"
+                formControlName="email"
+              />
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                [type]="hide() ? 'password' : 'text'"
+                formControlName="password"
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                type="button"
+                (click)="clickEvent($event)"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide()"
+              >
+                <mat-icon>{{
+                  hide() ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <div class="button-signup">
+            <button
+              mat-raised-button
+              type="submit"
+              color="primary"
+              data-ng-disabled="signInForm.$invalid"
+            >
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-card>
+  </div>
+  
