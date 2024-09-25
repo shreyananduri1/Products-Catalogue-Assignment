@@ -76,5 +76,6 @@ export class HomeComponent {
   clearFilter() {
     this.inputValue = '';
     this.selectedCategory = '';
+    this.filteredProducts = this.products;
   }
 }

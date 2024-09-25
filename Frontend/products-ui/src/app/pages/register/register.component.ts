@@ -32,17 +32,18 @@ export class RegisterComponent {
 
   onSubmit() {
     let user = this.signInForm.value;
-    console.log(user);
     if (user.username == '' || user.email == '' || user.password == '') {
       Swal.fire('Error', 'Please Enter all the fields');
     }
     if (this.signInForm.invalid) {
       Swal.fire('Error', 'Invalid data');
     }
+    else{
     console.log('navigating');
     this.userService.validateUser(user).subscribe((data) => {
       console.log(data);
       this.router.navigate(['/login']);
     });
+  }
   }
 }
